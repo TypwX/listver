@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ListVer: sua lista de filmes e séries</title>
-<meta name="description" content="App gratuito para guardar filmes e séries, ver onde assistir no Brasil, acompanhar episódios e montar listas com amigos.">
+<meta name="description" content="App gratuito para guardar filmes e séries, ver onde assistir no Brasil, acompanhar episódios e ver os horários dos cinemas perto de você.">
 <meta property="og:title" content="ListVer: sua lista de filmes e séries">
-<meta property="og:description" content="Guarde o que quer ver, descubra onde assistir e monte listas com quem assiste junto. Grátis para Android.">
+<meta property="og:description" content="Guarde o que quer ver, descubra onde assistir e veja os cinemas perto de você. Grátis para Android.">
 <meta property="og:image" content="icone.png">
 <meta name="theme-color" content="#0E0F13">
 <link rel="icon" href="icone.png">
@@ -23,55 +23,52 @@
 
 <main id="topo">
   <section class="heroi">
-    <img class="heroi-icone" src="icone.png" alt="Ícone do ListVer" width="96" height="96">
+    <img class="heroi-icone" src="icone.png" alt="Ícone do ListVer" width="88" height="88">
     <h1>Sua lista de filmes e séries, <span>sem esquecer nada</span></h1>
-    <p class="heroi-texto">Guarde o que quer ver, descubra em qual streaming está, marque o episódio onde parou e monte listas com quem assiste junto com você.</p>
+    <p class="heroi-texto">Guarde o que quer ver, descubra em qual streaming está e veja os horários dos cinemas perto de você.</p>
     <div class="heroi-acoes">
-      <a class="botao" href="#baixar">Baixar grátis para Android</a>
-      <span class="selo">Versão de teste · sem anúncios</span>
+      <a class="botao" href="https://github.com/TypwX/listver/releases/latest/download/ListVer.apk">Baixar grátis para Android</a>
+      <span class="selo">Versão de teste · sem anúncios · <a href="#baixar">como instalar</a></span>
     </div>
   </section>
 
-  <section class="recursos" aria-labelledby="recursos-titulo">
-    <h2 id="recursos-titulo">O que dá para fazer</h2>
-    <div class="grade">
-      <article class="cartao">
-        <div class="cartao-icone" aria-hidden="true">🎬</div>
-        <h3>Minha lista</h3>
-        <p>Separe em Quero ver, Vendo e Visto. Dê nota e escreva o que achou.</p>
-      </article>
-      <article class="cartao">
-        <div class="cartao-icone" aria-hidden="true">📺</div>
-        <h3>Onde assistir</h3>
-        <p>Veja em qual streaming do Brasil cada título está e receba aviso quando chegar no seu.</p>
-      </article>
-      <article class="cartao">
-        <div class="cartao-icone" aria-hidden="true">✅</div>
-        <h3>Episódios</h3>
-        <p>Marque temporada e episódio e continue de onde parou, sem procurar.</p>
-      </article>
-      <article class="cartao">
-        <div class="cartao-icone" aria-hidden="true">👥</div>
-        <h3>Listas com amigos</h3>
-        <p>Crie listas em grupo para quem assiste junto, com o episódio onde vocês pararam.</p>
-      </article>
-      <article class="cartao">
-        <div class="cartao-icone" aria-hidden="true">🍿</div>
-        <h3>Cinema</h3>
-        <p>Horários das salas da Grande Florianópolis, com filtro de dublado e legendado.</p>
-      </article>
-      <article class="cartao">
-        <div class="cartao-icone" aria-hidden="true">✨</div>
-        <h3>Sugestões e estreias</h3>
-        <p>Ideias pelo seu gosto, estreias da semana e uma retrospectiva do que você viu.</p>
-      </article>
-    </div>
+  <section class="destaques" aria-label="Principais recursos">
+    <div class="destaque"><h3>Minha lista</h3><p>Quero ver, Vendo e Visto, com nota e o episódio onde parou.</p></div>
+    <div class="destaque"><h3>Onde assistir</h3><p>Em qual streaming do Brasil cada título está.</p></div>
+    <div class="destaque"><h3>Cinema</h3><p>Horários perto de você, dublado ou legendado.</p></div>
+  </section>
+
+  <section class="como" aria-labelledby="como-titulo">
+    <h2 id="como-titulo">Como o app funciona</h2>
+    <p class="como-dica">Telas reais do ListVer. <span class="so-celular">Deslize para o lado.</span></p>
+    <ol class="telas">
+      <li class="tela">
+        <img src="telas/1-listas.webp" alt="Tela Listas: Continuar assistindo The Last of Us, parado no episódio 5, e a Minha lista com 8 títulos" width="390" height="844" loading="lazy">
+        <h3><span>1</span> Guarde tudo num lugar</h3>
+        <p>Indicaram um filme? Busque e toque em +. As séries que você está vendo aparecem em “Continuar assistindo”.</p>
+      </li>
+      <li class="tela">
+        <img src="telas/2-minha-lista.webp" alt="Tela Minha lista: grade de capas com Matrix, Breaking Bad, The Last of Us, Stranger Things e outros" width="390" height="844" loading="lazy">
+        <h3><span>2</span> Organize do seu jeito</h3>
+        <p>Separe em Quero ver, Vendo e Visto. A lista é privada; abra o cadeado só se quiser mostrar aos amigos.</p>
+      </li>
+      <li class="tela">
+        <img src="telas/3-filme.webp" alt="Tela do filme Duna: Parte Dois mostrando que está no HBO Max e em outros serviços" width="390" height="844" loading="lazy">
+        <h3><span>3</span> Saiba onde assistir</h3>
+        <p>Cada título mostra em qual streaming está no Brasil e destaca os que você assina.</p>
+      </li>
+      <li class="tela">
+        <img src="telas/4-cinema.webp" alt="Tela Cinema: filmes em cartaz em Florianópolis com dublado, legendado e a próxima sessão" width="390" height="844" loading="lazy">
+        <h3><span>4</span> Veja o que passa no cinema</h3>
+        <p>Use sua localização ou escolha a cidade: aparecem os cinemas perto e os próximos horários.</p>
+      </li>
+    </ol>
   </section>
 
   <section class="baixar" id="baixar" aria-labelledby="baixar-titulo">
     <h2 id="baixar-titulo">Baixar e testar</h2>
     <a class="botao botao-grande" href="https://github.com/TypwX/listver/releases/latest/download/ListVer.apk">Baixar o ListVer (Android)</a>
-    <p class="nota-centro">Arquivo de cerca de 120 MB. Use o Wi-Fi se puder.</p>
+    <p class="nota-centro">Grátis. Arquivo de cerca de 120 MB: use o Wi-Fi se puder.</p>
     <ol class="passos">
       <li>Toque em <strong>Baixar o ListVer</strong> e confirme o download, se o navegador perguntar.</li>
       <li>Quando terminar, toque no arquivo baixado e depois em <strong>Instalar</strong>. Se o Android pedir, permita instalar a partir do navegador.</li>
@@ -85,12 +82,12 @@
 
   <section class="sugestao" aria-labelledby="sugestao-titulo">
     <h2 id="sugestao-titulo">Sua opinião faz o app</h2>
-    <p>O ListVer está em teste. Achou um erro ou tem uma ideia? Dentro do app, vá em <strong>Mais → Falar com o suporte</strong> e conte. Toda mensagem é lida.</p>
+    <p>O ListVer está em teste. Tem uma ideia? No app, vá em <strong>Mais → Dar uma sugestão</strong>. Achou um erro? <strong>Mais → Falar com o suporte</strong>. Toda mensagem é lida.</p>
   </section>
 </main>
 
 <footer class="rodape">
-  <p>Feito por Hallison, com a ajuda de inteligência artificial.</p>
+  <p>Feito por Hallison, com a ajuda de inteligência artificial. Grátis, sem anúncios e sem venda de dados.</p>
   <p><a href="privacidade.html">Política de privacidade</a></p>
   <p class="creditos">Este produto usa a API do TMDB, mas não é endossado nem certificado pelo TMDB. Dados de onde assistir fornecidos pela JustWatch.</p>
 </footer>
