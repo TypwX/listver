@@ -100,6 +100,33 @@ section { padding: 56px 0; }
 .destaque h3 { font-size: 18px; text-transform: uppercase; letter-spacing: 0.5px; }
 .destaque p { color: var(--suave); margin: 6px 0 0; font-size: 15px; }
 
+/* ---------- Cinema em destaque ---------- */
+.cinema {
+  display: grid; gap: 32px; align-items: center;
+  margin-top: 24px; padding: 40px 24px;
+  background: radial-gradient(120% 90% at 85% 50%, rgba(245, 184, 61, 0.14), rgba(245, 184, 61, 0) 60%), var(--cartao);
+  border: 1px solid var(--borda); border-radius: 24px;
+}
+.cinema-texto { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
+.sobrelinha { margin: 0; color: var(--destaque); font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+.cinema h2 { text-align: left; text-transform: none; font-size: clamp(28px, 4.2vw, 40px); letter-spacing: 0; }
+.cinema-sub { margin: 0; color: var(--suave); font-size: 17px; }
+.cinema-lista { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.cinema-lista li { padding-left: 26px; position: relative; color: var(--suave); }
+.cinema-lista li::before {
+  content: ''; position: absolute; left: 4px; top: 0.55em; width: 10px; height: 10px;
+  border-radius: 3px; background: var(--destaque);
+}
+.cinema-lista strong { color: var(--texto); }
+.cinema-tela {
+  width: min(270px, 70vw); height: auto; justify-self: center;
+  border: 6px solid #22252d; border-radius: 30px; background: #000;
+  box-shadow: 0 24px 50px var(--sombra);
+}
+@media (min-width: 760px) {
+  .cinema { grid-template-columns: 1.3fr 1fr; padding: 48px; }
+}
+
 /* ---------- Como funciona ---------- */
 .secao-dica { text-align: center; color: var(--suave); margin: 10px 0 0; }
 .so-celular { display: none; }
