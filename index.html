@@ -12,75 +12,126 @@
 <link rel="icon" href="icone.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="estilo.css">
+<script src="app.js" defer></script>
 </head>
 <body>
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
 <header class="barra">
   <a class="marca" href="#topo"><img src="icone.png" alt="" width="28" height="28">ListVer</a>
-  <a class="barra-baixar" href="#baixar">Baixar</a>
+  <nav class="barra-links" aria-label="Seções">
+    <a href="#como">Como funciona</a>
+    <a class="barra-baixar" href="#baixar">Baixar</a>
+  </nav>
 </header>
 
-<main id="topo">
-  <section class="heroi">
-    <img class="heroi-icone" src="icone.png" alt="Ícone do ListVer" width="88" height="88">
-    <h1>Sua lista de filmes e séries, <span>sem esquecer nada</span></h1>
-    <p class="heroi-texto">Guarde o que quer ver, descubra em qual streaming está e veja os horários dos cinemas perto de você.</p>
-    <div class="heroi-acoes">
-      <a class="botao" href="https://github.com/TypwX/listver/releases/latest/download/ListVer.apk">Baixar grátis para Android</a>
-      <span class="selo">Versão de teste · sem anúncios · <a href="#baixar">como instalar</a></span>
+<main id="conteudo">
+  <section class="heroi" id="topo">
+    <div class="heroi-texto">
+      <p class="sobrelinha entra">Grátis · Android · versão 1.2</p>
+      <h1 class="entra">Sua lista de filmes e séries, <span>sem esquecer nada</span></h1>
+      <p class="heroi-sub entra">Guarde o que quer ver, descubra em qual streaming está e veja os horários dos cinemas perto de você.</p>
+      <div class="heroi-acoes entra">
+        <a class="botao" href="https://github.com/TypwX/listver/releases/latest/download/ListVer.apk">Baixar grátis para Android</a>
+        <a class="link-seta" href="#como">Ver como funciona <span aria-hidden="true">↓</span></a>
+      </div>
+      <p class="meta entra">Arquivo de 121 MB · sem anúncios · <a href="#baixar">como instalar</a></p>
+    </div>
+    <div class="heroi-celulares entra" aria-hidden="true">
+      <div class="brilho"></div>
+      <img class="celular celular-tras" src="telas/4-cinema.webp" alt="" width="390" height="844">
+      <img class="celular celular-frente" src="telas/1-listas.webp" alt="" width="390" height="844">
     </div>
   </section>
 
-  <section class="destaques" aria-label="Principais recursos">
-    <div class="destaque"><h3>Minha lista</h3><p>Quero ver, Vendo e Visto, com nota e o episódio onde parou.</p></div>
-    <div class="destaque"><h3>Onde assistir</h3><p>Em qual streaming do Brasil cada título está.</p></div>
-    <div class="destaque"><h3>Cinema</h3><p>Horários perto de você, dublado ou legendado.</p></div>
+  <section class="fatos" aria-label="O ListVer em números">
+    <div class="fato revela"><strong>441</strong><span>cinemas no Brasil, com horários</span></div>
+    <div class="fato revela"><strong>177</strong><span>cidades, da sua localização ou escolhida na lista</span></div>
+    <div class="fato revela"><strong>0</strong><span>anúncios, e seus dados não são vendidos</span></div>
   </section>
 
-  <section class="como" aria-labelledby="como-titulo">
-    <h2 id="como-titulo">Como o app funciona</h2>
-    <p class="como-dica">Telas reais do ListVer. <span class="so-celular">Deslize para o lado.</span></p>
-    <ol class="telas">
-      <li class="tela">
-        <img src="telas/1-listas.webp" alt="Tela Listas: Continuar assistindo The Last of Us, parado no episódio 5, e a Minha lista com 8 títulos" width="390" height="844" loading="lazy">
-        <h3><span>1</span> Guarde tudo num lugar</h3>
-        <p>Indicaram um filme? Busque e toque em +. As séries que você está vendo aparecem em “Continuar assistindo”.</p>
-      </li>
-      <li class="tela">
-        <img src="telas/2-minha-lista.webp" alt="Tela Minha lista: grade de capas com Matrix, Breaking Bad, The Last of Us, Stranger Things e outros" width="390" height="844" loading="lazy">
-        <h3><span>2</span> Organize do seu jeito</h3>
-        <p>Separe em Quero ver, Vendo e Visto. A lista é privada; abra o cadeado só se quiser mostrar aos amigos.</p>
-      </li>
-      <li class="tela">
-        <img src="telas/3-filme.webp" alt="Tela do filme Duna: Parte Dois mostrando que está no HBO Max e em outros serviços" width="390" height="844" loading="lazy">
-        <h3><span>3</span> Saiba onde assistir</h3>
-        <p>Cada título mostra em qual streaming está no Brasil e destaca os que você assina.</p>
-      </li>
-      <li class="tela">
-        <img src="telas/4-cinema.webp" alt="Tela Cinema: filmes em cartaz em Florianópolis com dublado, legendado e a próxima sessão" width="390" height="844" loading="lazy">
-        <h3><span>4</span> Veja o que passa no cinema</h3>
-        <p>Use sua localização ou escolha a cidade: aparecem os cinemas perto e os próximos horários.</p>
-      </li>
-    </ol>
+  <section class="como" id="como" aria-labelledby="como-titulo">
+    <div class="cabeca revela">
+      <h2 id="como-titulo">Como o app funciona</h2>
+      <p>Telas reais do ListVer. <span class="so-celular">Deslize para o lado.</span></p>
+    </div>
+    <div class="como-corpo">
+      <ol class="passos-app">
+        <li class="passo" data-passo="0">
+          <img src="telas/1-listas.webp" alt="Tela Listas: Continuar assistindo The Last of Us, parado no episódio 5, e a Minha lista com 8 títulos" width="390" height="844" loading="lazy">
+          <h3><span>1</span> Guarde tudo num lugar</h3>
+          <p>Indicaram um filme? Busque e toque em +. As séries que você está vendo aparecem em “Continuar assistindo”, no episódio onde parou.</p>
+        </li>
+        <li class="passo" data-passo="1">
+          <img src="telas/2-minha-lista.webp" alt="Tela Minha lista: grade de capas com Matrix, Breaking Bad, The Last of Us, Stranger Things e outros" width="390" height="844" loading="lazy">
+          <h3><span>2</span> Organize do seu jeito</h3>
+          <p>Separe em Quero ver, Vendo e Visto. A lista é privada; abra o cadeado só se quiser mostrar aos amigos.</p>
+        </li>
+        <li class="passo" data-passo="2">
+          <img src="telas/3-filme.webp" alt="Tela do filme Duna: Parte Dois mostrando que está no HBO Max e em outros serviços" width="390" height="844" loading="lazy">
+          <h3><span>3</span> Saiba onde assistir</h3>
+          <p>Cada título mostra em qual streaming está no Brasil e destaca os que você assina. Quando chegar no seu, o app avisa.</p>
+        </li>
+        <li class="passo" data-passo="3">
+          <img src="telas/4-cinema.webp" alt="Tela Cinema: filmes em cartaz em Florianópolis com dublado, legendado e a próxima sessão" width="390" height="844" loading="lazy">
+          <h3><span>4</span> Veja o que passa no cinema</h3>
+          <p>Use sua localização ou escolha a cidade: aparecem os cinemas perto e os próximos horários, dublados ou legendados.</p>
+        </li>
+      </ol>
+      <div class="vitrine" aria-hidden="true">
+        <img class="vitrine-tela ativa" src="telas/1-listas.webp" alt="" width="390" height="844">
+        <img class="vitrine-tela" src="telas/2-minha-lista.webp" alt="" width="390" height="844" loading="lazy">
+        <img class="vitrine-tela" src="telas/3-filme.webp" alt="" width="390" height="844" loading="lazy">
+        <img class="vitrine-tela" src="telas/4-cinema.webp" alt="" width="390" height="844" loading="lazy">
+      </div>
+    </div>
+    <div class="pontos" role="group" aria-label="Escolher tela">
+      <button type="button" class="ponto ativo" aria-label="Tela 1" aria-current="true"></button>
+      <button type="button" class="ponto" aria-label="Tela 2"></button>
+      <button type="button" class="ponto" aria-label="Tela 3"></button>
+      <button type="button" class="ponto" aria-label="Tela 4"></button>
+    </div>
   </section>
 
   <section class="baixar" id="baixar" aria-labelledby="baixar-titulo">
-    <h2 id="baixar-titulo">Baixar e testar</h2>
-    <a class="botao botao-grande" href="https://github.com/TypwX/listver/releases/latest/download/ListVer.apk">Baixar o ListVer (Android)</a>
-    <p class="nota-centro">Grátis. Arquivo de cerca de 120 MB: use o Wi-Fi se puder.</p>
-    <ol class="passos">
-      <li>Toque em <strong>Baixar o ListVer</strong> e confirme o download, se o navegador perguntar.</li>
-      <li>Quando terminar, toque no arquivo baixado e depois em <strong>Instalar</strong>. Se o Android pedir, permita instalar a partir do navegador.</li>
-      <li>Abra o app e crie sua conta com e-mail ou com o Google.</li>
-    </ol>
-    <p class="nota-centro">Se aparecer o aviso do Google Play Protect, toque em “Mais detalhes” e em “Instalar mesmo assim”. Isso acontece com qualquer app que não vem da Play Store. As próximas melhorias chegam sozinhas, sem baixar de novo.</p>
-    <div class="aviso">
-      <strong>Tem iPhone?</strong> Por enquanto o ListVer é só para Android. Uma versão que abre pelo navegador está nos planos.
+    <div class="cabeca revela">
+      <h2 id="baixar-titulo">Baixar e testar</h2>
+      <p>Leva uns dois minutos. As próximas melhorias chegam sozinhas, sem baixar de novo.</p>
+    </div>
+    <div class="baixar-corpo">
+      <div class="instalar revela">
+        <a class="botao botao-grande" href="https://github.com/TypwX/listver/releases/latest/download/ListVer.apk">Baixar o ListVer (Android)</a>
+        <p class="meta">Grátis · 121 MB: use o Wi-Fi se puder</p>
+        <ol class="passos">
+          <li><strong>Baixe</strong> tocando no botão acima e confirme o download, se o navegador perguntar.</li>
+          <li><strong>Instale</strong> tocando no arquivo baixado. Se o Android pedir, permita instalar a partir do navegador.</li>
+          <li><strong>Entre</strong> criando sua conta com e-mail ou com o Google.</li>
+        </ol>
+      </div>
+      <dl class="duvidas revela">
+        <div>
+          <dt>Apareceu um aviso do Google. É seguro?</dt>
+          <dd>O Play Protect avisa sobre qualquer app que não vem da Play Store. Toque em “Mais detalhes” e em “Instalar mesmo assim”.</dd>
+        </div>
+        <div>
+          <dt>Por que não está na Play Store?</dt>
+          <dd>O app está em fase de teste. Por enquanto ele é distribuído só por esta página, de graça.</dd>
+        </div>
+        <div>
+          <dt>Funciona no iPhone?</dt>
+          <dd>Ainda não, é só para Android. Uma versão que abre pelo navegador está nos planos.</dd>
+        </div>
+        <div>
+          <dt>E se eu quiser sair?</dt>
+          <dd>No app, em Mais → seu perfil → Excluir minha conta, tudo é apagado na hora.</dd>
+        </div>
+      </dl>
     </div>
   </section>
 
-  <section class="sugestao" aria-labelledby="sugestao-titulo">
+  <section class="sugestao revela" aria-labelledby="sugestao-titulo">
     <h2 id="sugestao-titulo">Sua opinião faz o app</h2>
     <p>O ListVer está em teste. Tem uma ideia? No app, vá em <strong>Mais → Dar uma sugestão</strong>. Achou um erro? <strong>Mais → Falar com o suporte</strong>. Toda mensagem é lida.</p>
   </section>

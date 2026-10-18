@@ -5,29 +5,50 @@
   --texto: #f2f3f5;
   --suave: #9aa0aa;
   --destaque: #f5b83d;
+  --destaque-claro: #ffc95a;
   --sobre-destaque: #1a1300;
+  --sombra: rgba(4, 5, 9, 0.6);
+
+  /* Curvas de movimento (Emil Kowalski): fortes, nunca ease-in. */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+
+  --largura: 1120px;
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
 body {
   margin: 0;
   background: var(--fundo);
   color: var(--texto);
   font-family: Manrope, system-ui, sans-serif;
   line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
 }
 a { color: var(--destaque); }
-h1, h2, h3 { font-family: Oswald, sans-serif; font-weight: 600; line-height: 1.15; margin: 0; }
-h2 { font-size: 30px; text-transform: uppercase; letter-spacing: 0.5px; text-align: center; }
-h3 { font-size: 20px; font-weight: 500; }
+img { max-width: 100%; }
+h1, h2, h3 { font-family: Oswald, sans-serif; font-weight: 600; line-height: 1.1; margin: 0; text-wrap: balance; }
+h2 { font-size: clamp(30px, 4.4vw, 44px); letter-spacing: -0.3px; }
+h3 { font-size: 21px; font-weight: 500; }
+p { text-wrap: pretty; }
 
+:focus-visible { outline: 3px solid var(--destaque); outline-offset: 3px; border-radius: 6px; }
+
+.pular {
+  position: absolute; left: 16px; top: -100px; z-index: 3;
+  background: var(--destaque); color: var(--sobre-destaque);
+  padding: 10px 16px; border-radius: 10px; font-weight: 800; text-decoration: none;
+}
+.pular:focus { top: 12px; }
+
+/* ---------- Barra ---------- */
 .barra {
-  position: sticky; top: 0; z-index: 1;
+  position: sticky; top: 0; z-index: 2;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 12px 16px;
-  background: rgba(14, 15, 19, 0.88);
-  backdrop-filter: blur(8px);
+  padding: 12px max(16px, calc((100% - var(--largura)) / 2));
+  background: rgba(14, 15, 19, 0.82);
+  backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--borda);
 }
 .marca {
@@ -35,89 +56,209 @@ h3 { font-size: 20px; font-weight: 500; }
   color: var(--texto); text-decoration: none;
   font-family: Oswald, sans-serif; font-size: 22px; text-transform: uppercase; letter-spacing: 1px;
 }
+.barra-links { display: flex; align-items: center; gap: 20px; }
+.barra-links a:not(.barra-baixar) { color: var(--suave); text-decoration: none; font-weight: 600; font-size: 15px; }
 .barra-baixar {
   color: var(--sobre-destaque); background: var(--destaque);
-  text-decoration: none; font-weight: 800; padding: 8px 16px; border-radius: 999px;
+  text-decoration: none; font-weight: 800; padding: 8px 18px; border-radius: 999px;
 }
 
-main { max-width: 960px; margin: 0 auto; padding: 0 16px; }
-section { padding: 56px 0; }
-
-.heroi { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 20px; padding-top: 64px; }
-.heroi-icone { border-radius: 22px; }
-.heroi h1 { font-size: clamp(36px, 7vw, 60px); text-transform: uppercase; max-width: 760px; }
-.heroi h1 span { color: var(--destaque); }
-.heroi-texto { color: var(--suave); font-size: 18px; max-width: 580px; margin: 0; }
-.heroi-acoes { display: flex; flex-direction: column; align-items: center; gap: 10px; }
-.selo { color: var(--suave); font-size: 14px; }
-
+/* ---------- Botões ---------- */
+.botao, .barra-baixar {
+  transition: transform 160ms var(--ease-out), background-color 200ms ease;
+}
 .botao {
   display: inline-block; text-align: center; text-decoration: none;
   background: var(--destaque); color: var(--sobre-destaque);
   font-weight: 800; font-size: 17px; padding: 16px 28px; border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(245, 184, 61, 0.18);
 }
-.botao:hover { filter: brightness(1.08); }
-.botao:active { opacity: 0.85; }
+.botao:active, .barra-baixar:active { transform: scale(0.97); }
 .botao-grande { display: block; font-size: 19px; padding: 20px; }
+.link-seta { color: var(--texto); font-weight: 700; text-decoration: none; }
+.link-seta span { display: inline-block; transition: transform 200ms var(--ease-out); }
+@media (hover: hover) and (pointer: fine) {
+  .botao:hover, .barra-baixar:hover { background-color: var(--destaque-claro); }
+  .link-seta:hover span { transform: translateY(3px); }
+  .barra-links a:not(.barra-baixar):hover { color: var(--texto); }
+}
 
+main { max-width: var(--largura); margin: 0 auto; padding: 0 16px; }
+section { padding: 72px 0 80px; }
+.cabeca { max-width: 620px; margin-bottom: 36px; }
+.cabeca p { color: var(--suave); font-size: 17px; margin: 10px 0 0; }
+.meta { color: var(--suave); font-size: 14px; margin: 0; }
+.meta a { color: var(--suave); }
 
-.baixar { max-width: 520px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
+/* ---------- Topo ---------- */
+.heroi { display: grid; gap: 40px; padding-top: 56px; }
+.heroi-texto { display: flex; flex-direction: column; gap: 20px; }
+.sobrelinha { margin: 0; color: var(--destaque); font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+.heroi h1 { font-size: clamp(40px, 6.4vw, 72px); text-transform: uppercase; line-height: 1.02; letter-spacing: -0.5px; }
+.heroi h1 span { color: var(--destaque); }
+.heroi-sub { color: var(--suave); font-size: 18px; max-width: 34em; margin: 0; }
+.heroi-acoes { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 24px; }
+
+.heroi-celulares { position: relative; height: clamp(420px, 118vw, 600px); }
+.brilho {
+  position: absolute; inset: 8% 4% 0;
+  background: radial-gradient(closest-side, rgba(245, 184, 61, 0.22), rgba(245, 184, 61, 0));
+  filter: blur(20px);
+}
+.celular {
+  position: absolute; width: min(56vw, 250px); height: auto;
+  border: 6px solid #22252d; border-radius: 32px; background: #000;
+  box-shadow: 0 30px 60px var(--sombra);
+}
+.celular-tras { right: 6%; top: 10%; transform: rotate(6deg); opacity: 0.85; }
+.celular-frente { left: 6%; top: 0; transform: rotate(-3deg); }
+
+/* ---------- Fatos ---------- */
+.fatos {
+  display: grid; gap: 0; padding: 0;
+  border-top: 1px solid var(--borda); border-bottom: 1px solid var(--borda);
+}
+.fato { display: flex; align-items: center; gap: 18px; padding: 20px 4px; }
+.fato + .fato { border-top: 1px solid var(--borda); }
+.fato strong {
+  font-family: Oswald, sans-serif; font-weight: 600; font-size: 44px; line-height: 1;
+  color: var(--destaque); font-variant-numeric: tabular-nums; min-width: 2.4em;
+}
+.fato span { color: var(--suave); font-size: 15px; }
+
+/* ---------- Como funciona ---------- */
+.so-celular { display: inline; }
+.passos-app {
+  list-style: none; margin: 0 -16px; padding: 0 16px 8px;
+  display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+.passos-app::-webkit-scrollbar { display: none; }
+.passo { flex: 0 0 76%; scroll-snap-align: center; display: flex; flex-direction: column; gap: 10px; }
+.passo img {
+  width: 100%; height: auto; display: block;
+  border: 6px solid #22252d; border-radius: 28px; background: #000;
+  box-shadow: 0 18px 40px var(--sombra);
+}
+.passo h3 { display: flex; align-items: center; gap: 10px; margin-top: 8px; }
+.passo h3 span {
+  display: inline-grid; place-items: center; width: 28px; height: 28px; flex: none;
+  border-radius: 9px; background: var(--destaque); color: var(--sobre-destaque);
+  font-family: Manrope, system-ui, sans-serif; font-size: 14px; font-weight: 800;
+}
+.passo p { color: var(--suave); margin: 0; font-size: 15px; }
+.vitrine { display: none; }
+
+.pontos { display: flex; justify-content: center; gap: 4px; margin-top: 18px; }
+.ponto {
+  width: 32px; height: 32px; padding: 0; border: 0; background: none; cursor: pointer;
+  display: grid; place-items: center;
+}
+.ponto::before {
+  content: ''; width: 8px; height: 8px; border-radius: 4px; background: var(--borda);
+  transition: transform 200ms var(--ease-out), background-color 200ms ease;
+}
+.ponto.ativo::before { background: var(--destaque); transform: scaleX(2.5); }
+
+/* ---------- Baixar ---------- */
+.baixar-corpo { display: grid; gap: 32px; }
+.instalar { display: flex; flex-direction: column; gap: 14px; }
+.instalar .meta { text-align: center; }
 .passos {
-  margin: 0; padding: 18px 18px 18px 38px;
-  background: var(--cartao); border: 1px solid var(--borda); border-radius: 16px;
-  display: flex; flex-direction: column; gap: 10px;
+  margin: 6px 0 0; padding: 20px 20px 20px 40px;
+  background: var(--cartao); border-radius: 18px;
+  display: flex; flex-direction: column; gap: 12px;
 }
 .passos strong { color: var(--destaque); }
-.nota-centro { color: var(--suave); font-size: 14px; text-align: center; margin: 0; }
-.aviso { background: var(--cartao); border-left: 4px solid var(--destaque); border-radius: 12px; padding: 14px 16px; font-size: 15px; }
+.duvidas { margin: 0; }
+.duvidas div { padding: 16px 0; border-top: 1px solid var(--borda); }
+.duvidas div:last-child { border-bottom: 1px solid var(--borda); }
+.duvidas dt { font-weight: 700; }
+.duvidas dd { margin: 4px 0 0; color: var(--suave); font-size: 15px; }
 
-.sugestao { text-align: center; max-width: 620px; margin: 0 auto; }
+.sugestao { max-width: 640px; }
 .sugestao p { color: var(--suave); font-size: 17px; }
 
+/* ---------- Rodapé e página de privacidade ---------- */
 .rodape { border-top: 1px solid var(--borda); padding: 28px 16px 40px; text-align: center; color: var(--suave); font-size: 14px; }
 .rodape p { margin: 8px auto; max-width: 640px; }
-.creditos { display: flex; flex-direction: column; align-items: center; gap: 8px; font-size: 12px; }
+.creditos { font-size: 12px; }
 
-.texto-longo { max-width: 720px; margin: 0 auto; padding: 48px 0 64px; }
+.texto-longo { max-width: 720px; margin: 0 auto; padding: 48px 16px 64px; }
 .texto-longo h1 { font-size: 40px; text-transform: uppercase; margin-bottom: 8px; }
-.texto-longo h2 { text-align: left; font-size: 22px; margin-top: 32px; }
+.texto-longo h2 { font-size: 22px; margin-top: 32px; }
 .texto-longo p, .texto-longo li { color: #d4d7dd; }
 .texto-longo .data { color: var(--suave); }
 
-.selo a { color: var(--suave); }
-
-.destaques { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; padding-top: 8px; }
-.destaque { background: var(--cartao); border: 1px solid var(--borda); border-radius: 16px; padding: 18px; }
-.destaque h3 { font-size: 18px; text-transform: uppercase; letter-spacing: 0.5px; }
-.destaque p { color: var(--suave); margin: 6px 0 0; font-size: 15px; }
-
-.como-dica { text-align: center; color: var(--suave); margin: 10px 0 0; }
-.so-celular { display: none; }
-.telas {
-  list-style: none; margin: 28px 0 0; padding: 0;
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+/* ---------- Telas largas ---------- */
+@media (max-width: 479px) {
+  .barra-links a:not(.barra-baixar) { display: none; }
 }
-.tela { display: flex; flex-direction: column; gap: 10px; }
-.tela img {
-  width: 100%; height: auto; display: block;
-  border: 6px solid #22252d; border-radius: 28px; background: #000;
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
-}
-.tela h3 { font-size: 19px; display: flex; align-items: center; gap: 8px; margin-top: 6px; }
-.tela h3 span {
-  display: inline-grid; place-items: center; width: 26px; height: 26px; flex: none;
-  border-radius: 50%; background: var(--destaque); color: var(--sobre-destaque);
-  font-family: Manrope, system-ui, sans-serif; font-size: 14px; font-weight: 800;
-}
-.tela p { color: var(--suave); margin: 0; font-size: 15px; }
 
-@media (max-width: 720px) {
-  .destaques { grid-template-columns: 1fr; }
-  .so-celular { display: inline; }
-  /* No celular as telas viram um carrossel de deslizar. */
-  .telas {
-    display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 16px;
-    margin-left: -16px; margin-right: -16px; padding: 0 16px 12px;
+@media (min-width: 900px) {
+  section { padding: 96px 0 104px; }
+  .heroi { grid-template-columns: 1.05fr 0.95fr; align-items: center; padding-top: 72px; }
+  .heroi-celulares { height: 600px; }
+  .celular { width: 260px; }
+
+  .fatos { grid-template-columns: repeat(3, 1fr); }
+  .fato { flex-direction: column; align-items: flex-start; gap: 8px; padding: 28px 24px; }
+  .fato + .fato { border-top: 0; border-left: 1px solid var(--borda); }
+  .fato strong { font-size: 56px; }
+
+  /* O celular fica parado e troca de tela conforme a pessoa lê cada passo. */
+  .so-celular { display: none; }
+  .como-corpo { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+  .passos-app { flex-direction: column; overflow: visible; margin: 0; padding: 0; gap: 0; }
+  .passo { flex: none; min-height: 62vh; justify-content: center; opacity: 0.35; transition: opacity 300ms ease; }
+  .passo.ativo { opacity: 1; }
+  .passo img { display: none; }
+  .passo h3 { font-size: 30px; }
+  .passo h3 span { width: 34px; height: 34px; font-size: 16px; }
+  .passo p { font-size: 17px; max-width: 30em; }
+  .vitrine { display: block; position: sticky; top: 14vh; height: 72vh; }
+  .vitrine-tela {
+    position: absolute; left: 50%; top: 0; height: 100%; width: auto; max-height: 640px;
+    border: 6px solid #22252d; border-radius: 34px; background: #000;
+    box-shadow: 0 30px 60px var(--sombra);
+    opacity: 0; transform: translateX(-50%) scale(0.98); filter: blur(2px);
+    transition: opacity 300ms ease, transform 300ms var(--ease-out), filter 300ms ease;
   }
-  .tela { flex: 0 0 72%; scroll-snap-align: center; }
+  /* O leve desfoque junta as duas telas na troca, em vez de parecerem duas imagens sobrepostas. */
+  .vitrine-tela.ativa { opacity: 1; transform: translateX(-50%) scale(1); filter: none; }
+  .pontos { display: none; }
+
+  .baixar-corpo { grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+}
+
+/* ---------- Entradas (só com JavaScript ligado) ---------- */
+@keyframes entrar {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+.js .entra { opacity: 0; animation: entrar 600ms var(--ease-out) forwards; }
+.js .heroi h1 { animation-delay: 60ms; }
+.js .heroi-sub { animation-delay: 120ms; }
+.js .heroi-acoes { animation-delay: 180ms; }
+.js .heroi .meta { animation-delay: 240ms; }
+.js .heroi-celulares { animation-delay: 150ms; animation-duration: 800ms; }
+
+.js .revela {
+  opacity: 0; transform: translateY(16px);
+  transition: opacity 600ms var(--ease-out), transform 600ms var(--ease-out);
+}
+.js .revela.visivel { opacity: 1; transform: none; }
+.js .fato:nth-child(2) { transition-delay: 70ms; }
+.js .fato:nth-child(3) { transition-delay: 140ms; }
+
+/* Quem pediu menos movimento no celular vê só esmaecimentos curtos, sem deslocamento. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  @keyframes entrar { from { opacity: 0; } to { opacity: 1; } }
+  .js .entra { animation-duration: 200ms; animation-delay: 0ms; }
+  .js .revela { transform: none; transition: opacity 200ms ease; transition-delay: 0ms; }
+  .vitrine-tela, .vitrine-tela.ativa { transform: translateX(-50%); }
+  .ponto::before { transition: background-color 200ms ease; }
+  .ponto.ativo::before { transform: none; }
+  .botao:active, .barra-baixar:active { transform: none; }
 }
