@@ -1,5 +1,5 @@
 // Interações da página de download. Sem bibliotecas: a página funciona inteira
-// sem este arquivo; ele só acrescenta as entradas suaves e o passo a passo das telas.
+// sem este arquivo; ele só acrescenta as entradas suaves e as bolinhas do carrossel.
 // Navegador antigo sem IntersectionObserver: nada fica escondido nem animado.
 const observa = 'IntersectionObserver' in window;
 if (observa) document.documentElement.classList.add('js');
@@ -17,17 +17,12 @@ const revelar = observa && new IntersectionObserver(
 );
 if (revelar) document.querySelectorAll('.revela').forEach((el) => revelar.observe(el));
 
-// "Como o app funciona": no computador o celular fixo mostra a tela do passo que
-// está no meio da tela; no celular, as bolinhas acompanham o carrossel.
-const passos = [...document.querySelectorAll('.passo')];
-const telas = [...document.querySelectorAll('.vitrine-tela')];
+// No celular, as telas ficam num carrossel: as bolinhas mostram a posição e levam a cada tela.
+const carrossel = document.querySelector('.telas');
+const telas = [...document.querySelectorAll('.tela')];
 const pontos = [...document.querySelectorAll('.ponto')];
-const carrossel = document.querySelector('.passos-app');
-const largo = window.matchMedia('(min-width: 900px)');
 
-function mostrar(indice) {
-  passos.forEach((p, i) => p.classList.toggle('ativo', i === indice));
-  telas.forEach((t, i) => t.classList.toggle('ativa', i === indice));
+function marcar(indice) {
   pontos.forEach((p, i) => {
     p.classList.toggle('ativo', i === indice);
     if (i === indice) p.setAttribute('aria-current', 'true');
@@ -35,43 +30,18 @@ function mostrar(indice) {
   });
 }
 
-// No computador: o passo cujo centro está mais perto do centro da janela
-// (só 4 medidas por rolagem, leve o bastante para não precisar adiar).
-function passoNoMeio() {
-  if (!largo.matches) return;
-  const meio = window.innerHeight / 2;
-  const distancias = passos.map((p) => {
-    const r = p.getBoundingClientRect();
-    return Math.abs(r.top + r.height / 2 - meio);
-  });
-  mostrar(distancias.indexOf(Math.min(...distancias)));
-}
-window.addEventListener('scroll', passoNoMeio, { passive: true });
-window.addEventListener('resize', passoNoMeio);
-// Segundo gatilho: quando um passo cruza a tela (cobre rolagens bruscas, como links e teclado).
-if (observa) {
-  const cruzou = new IntersectionObserver(passoNoMeio, { threshold: [0, 0.25, 0.5, 0.75, 1] });
-  passos.forEach((p) => cruzou.observe(p));
-}
-
-let quadro = 0;
 carrossel.addEventListener(
   'scroll',
   () => {
-    cancelAnimationFrame(quadro);
-    quadro = requestAnimationFrame(() => {
-      // Distância entre o começo de uma tela e o da seguinte (largura + espaço).
-      const passo = passos[1].offsetLeft - passos[0].offsetLeft;
-      mostrar(Math.min(passos.length - 1, Math.round(carrossel.scrollLeft / passo)));
-    });
+    // Distância entre o começo de uma tela e o da seguinte (largura + espaço).
+    const passo = telas[1].offsetLeft - telas[0].offsetLeft;
+    if (passo > 0) marcar(Math.min(telas.length - 1, Math.round(carrossel.scrollLeft / passo)));
   },
   { passive: true },
 );
 
 pontos.forEach((ponto, i) =>
   ponto.addEventListener('click', () => {
-    passos[i].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    carrossel.scrollTo({ left: telas[i].offsetLeft - telas[0].offsetLeft, behavior: 'smooth' });
   }),
 );
-
-mostrar(0);
