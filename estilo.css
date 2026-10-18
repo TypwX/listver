@@ -70,7 +70,19 @@ p { text-wrap: pretty; }
   .botao:hover, .barra-baixar:hover { background-color: var(--destaque-claro); }
 }
 
-main { max-width: 960px; margin: 0 auto; padding: 0 16px; }
+main { position: relative; max-width: 960px; margin: 0 auto; padding: 0 16px; }
+
+/* Fundo do topo: mosaico inclinado de capas em alta, escurecido, como na tela de entrada do app. */
+.fundo-capas { position: absolute; left: 0; right: 0; top: 0; height: 620px; overflow: hidden; pointer-events: none; }
+.fundo-capas::before {
+  content: ''; position: absolute; left: -12%; right: -12%; top: -140px; height: 900px;
+  background: url(capas.webp) center top / 960px auto repeat;
+  opacity: 0.4; transform: rotate(-8deg);
+}
+.fundo-capas::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(14, 15, 19, 0.45) 0%, rgba(14, 15, 19, 0.78) 55%, var(--fundo) 100%);
+}
 section { padding: 56px 0; }
 
 /* ---------- Topo ---------- */
@@ -163,6 +175,8 @@ section { padding: 56px 0; }
   .telas::-webkit-scrollbar { display: none; }
   .tela { flex: 0 0 72%; scroll-snap-align: center; }
   .pontos { display: flex; }
+  .fundo-capas { height: 560px; }
+  .fundo-capas::before { background-size: 640px auto; }
 }
 
 /* ---------- Entradas suaves (só com JavaScript ligado) ---------- */
@@ -170,6 +184,8 @@ section { padding: 56px 0; }
   from { opacity: 0; transform: translateY(12px); }
   to { opacity: 1; transform: none; }
 }
+@keyframes surgir-capas { from { opacity: 0; } to { opacity: 0.4; } }
+.js .fundo-capas::before { animation: surgir-capas 800ms var(--ease-out) both; }
 .js .entra { opacity: 0; animation: entrar 500ms var(--ease-out) forwards; }
 .js .heroi h1 { animation-delay: 50ms; }
 .js .heroi-texto { animation-delay: 100ms; }
